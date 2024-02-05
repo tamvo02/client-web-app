@@ -24,11 +24,15 @@ function ProcessAndStatistic() {
       const formData = new FormData();
       formData.append("file", values.dragger[0]); // Extract the file from the array
 
-      const response = await axios.post("/api/file/upload", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const response = await axios.post(
+        "https://driver.hitek.com.vn:5051/api/file/upload",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
       console.log(response.data);
       setResult(response.data.sheetData);
     } catch (error) {}
@@ -50,7 +54,7 @@ function ProcessAndStatistic() {
     try {
       setDownloadtedIndex(index);
       const response = await axios.post(
-        "/api/file/download",
+        "https://driver.hitek.com.vn:5051/api/file/download",
         {
           vechai: value.Vachai,
           bazo: value.bazo,
@@ -95,7 +99,7 @@ function ProcessAndStatistic() {
         >
           <Upload.Dragger
             name="file"
-            action={"/api/file/upload"}
+            action={"https://driver.hitek.com.vn:5051/api/file/upload"}
             fileList={fileList}
             onChange={onChange}
           >
